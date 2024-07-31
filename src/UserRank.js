@@ -3,25 +3,41 @@ import React, { useState } from "react";
 const UserRank = () => {
   const [rank, setRank] = useState("");
   const [username, setUserName] = useState();
+  const [image, setImage] = useState(null);
   const handleRankChange = (e) => {
     setRank(e.target.value);
+  };
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImage(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="relative p-16 bg-white rounded-lg shadow-lg w-[50%] h-96 ">
         <div className="absolute top-2 right-2 bg-gray-200 text-gray-700 p-2 rounded-lg">
-         ID: #123456 
+          ID: #123456
         </div>
         <div className="flex items-start mb-4">
           <div className="w-36 h-36 flex-shrink-0">
-            <input type="file" id="upload-photo" className="hidden " />
+            <input
+              type="file"
+              id="upload-photo"
+              className="hidden "
+              onChange={handleImageChange}
+            />
             <label
               htmlFor="upload-photo"
               className="cursor-pointer block w-full h-full border border-gray-300 rounded-lg flex items-center justify-center bg-sky-400"
             >
               <span className="text-neutral-800 ">
-                <img src="" alt="Upload Photo" />
+                <img src={image} alt="Upload Photo" />
               </span>
             </label>
           </div>
