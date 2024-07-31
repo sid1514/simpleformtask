@@ -67,7 +67,7 @@ const UserRank = () => {
             id="rank"
             value={rank}
             onChange={handleRankChange}
-            className="ml-2 border border-gray-300 rounded h-max"
+            className="ml-2 border border-gray-300 rounded h-max font-bold"
           >
             <option value="">Select Rank</option>
             <option value="first">First Rank</option>
